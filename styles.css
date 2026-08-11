@@ -370,3 +370,10 @@
   .nav-actions { flex-direction:column; align-items:stretch; gap:10px; width:100%; margin-top:6px; }
   .nav-btn { justify-content:center; height:48px; font-size:15px; }
 }
+
+/* ---------- Desktop zoom: enlarge the whole UI by 25% on desktop ---------- */
+/* Gated to the desktop view (wider than the hamburger breakpoint). `zoom`
+   reflows content like native browser zoom, so no horizontal scrollbar. */
+@media (min-width: 1025px) {
+  :root { zoom: 1.25; }
+}

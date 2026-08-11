@@ -243,7 +243,14 @@ styles = f"""/* FlexiSoft — extracted static styles */
 /* ---------- Hover interactions ---------- */
 {hover_css}
 
-{NAV_CSS}"""
+{NAV_CSS}
+/* ---------- Desktop zoom: enlarge the whole UI by 25% on desktop ---------- */
+/* Gated to the desktop view (wider than the hamburger breakpoint). `zoom`
+   reflows content like native browser zoom, so no horizontal scrollbar. */
+@media (min-width: 1025px) {{
+  :root {{ zoom: 1.25; }}
+}}
+"""
 with open(f"{OUT}/styles.css", "w") as f:
     f.write(styles)
 
