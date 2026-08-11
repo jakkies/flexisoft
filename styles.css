@@ -338,3 +338,35 @@
 .fx-h2:hover { background: #21C9A1 !important; }
 .fx-h3:hover { background: #F9FAFA !important; border-color: #9CA5A2 !important; }
 .fx-h4:hover { box-shadow: 0 12px 28px rgba(17,24,39,0.08) !important; transform: translateY(-2px) !important; }
+
+/* ---------- Site header / responsive navigation ---------- */
+.nav-bar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 32px; max-width:1200px; min-height:72px; margin:0 auto; padding:14px 32px; position:relative; }
+.brand { display:flex; align-items:center; text-decoration:none; }
+.nav-toggle { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+.nav-menu { display:contents; }
+.nav-links { display:flex; flex-wrap:wrap; align-items:center; gap:28px; }
+.nav-link { font-size:14.5px; font-weight:500; color:#343A38; text-decoration:none; }
+.nav-link:hover { color:#006B52; }
+.nav-link.is-active { color:#006B52; font-weight:600; }
+.nav-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.nav-btn { display:inline-flex; align-items:center; height:40px; padding:0 20px; border-radius:999px; font-size:14px; text-decoration:none; }
+.nav-btn-ghost { border:1px solid #CFD5D3; background:#FFFFFF; font-weight:500; color:#111827; }
+.nav-btn-ghost:hover { background:#F4F7F6; border-color:#9CA5A2; }
+.nav-btn-solid { background:#00BD8E; color:#052416; font-weight:700; }
+.nav-btn-solid:hover { background:#21C9A1; }
+.nav-burger { display:none; align-items:center; justify-content:center; width:42px; height:42px; border-radius:10px; border:1px solid #CFD5D3; background:#FFFFFF; color:#111827; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.nav-burger .fx-x { display:none; }
+
+/* Collapse to a hamburger menu on narrower viewports */
+@media (max-width: 1024px) {
+  .nav-burger { display:inline-flex; }
+  .nav-menu { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:8px; background:#FFFFFF; border-bottom:1px solid #E5E9E8; padding:14px 24px 22px; box-shadow:0 14px 30px rgba(17,24,39,0.10); }
+  .nav-toggle:checked ~ .nav-menu { display:flex; }
+  .nav-toggle:checked ~ .nav-burger .fx-bars { display:none; }
+  .nav-toggle:checked ~ .nav-burger .fx-x { display:inline-flex; }
+  .nav-links { flex-direction:column; align-items:stretch; gap:2px; width:100%; }
+  .nav-link { padding:12px 10px; border-radius:8px; font-size:16px; }
+  .nav-link:hover { background:#F4F7F6; }
+  .nav-actions { flex-direction:column; align-items:stretch; gap:10px; width:100%; margin-top:6px; }
+  .nav-btn { justify-content:center; height:48px; font-size:15px; }
+}

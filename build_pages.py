@@ -166,23 +166,30 @@ FOOTER_COLS = [
 def header(active):
     links = []
     for label, href in NAV:
-        if label == active:
-            style = f"font-size:14.5px; font-weight:600; color:{INK}; text-decoration:none"
-        else:
-            style = "font-size:14.5px; font-weight:500; color:#343A38; text-decoration:none"
-        links.append(f'<a href="{href}" class="fx-h0" style="{style}">{label}</a>')
-    nav = "\n          ".join(links)
+        cls = "nav-link is-active" if label == active else "nav-link"
+        links.append(f'<a href="{href}" class="{cls}">{label}</a>')
+    nav = "\n            ".join(links)
+    bars = ('<svg class="fx-bars" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            'stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+            '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>')
+    close = ('<svg class="fx-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+             'stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+             '<line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>')
     return f'''<header style="position:sticky; top:0; z-index:20; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid {LINE}">
-    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 32px; max-width:1200px; min-height:72px; margin:0 auto; padding:14px 32px">
-      <a href="index.html" style="display:flex; align-items:center; text-decoration:none">
+    <div class="nav-bar">
+      <a href="index.html" class="brand" aria-label="FlexiSoft — home">
         <img src="assets/flexisoft-logo.svg" alt="FlexiSoft" style="height:22px; width:auto; display:block">
       </a>
-      <nav style="display:flex; flex-wrap:wrap; align-items:center; gap:28px">
-          {nav}
-      </nav>
-      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px">
-        <a href="#" class="fx-h1" style="display:inline-flex; align-items:center; height:40px; padding:0 20px; border-radius:999px; border:1px solid #CFD5D3; background:#FFFFFF; font-size:14px; font-weight:500; color:{INK}; text-decoration:none">Portal Log in</a>
-        <a href="contact.html" class="fx-h2" style="display:inline-flex; align-items:center; height:40px; padding:0 20px; border-radius:999px; background:{GREEN}; color:{DARK}; font-size:14px; font-weight:700; text-decoration:none">Book a Demo</a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+      <label for="nav-toggle" class="nav-burger" aria-label="Menu">{bars}{close}</label>
+      <div class="nav-menu">
+        <nav class="nav-links">
+            {nav}
+        </nav>
+        <div class="nav-actions">
+          <a href="#" class="nav-btn nav-btn-ghost">Portal Log in</a>
+          <a href="contact.html" class="nav-btn nav-btn-solid">Book a Demo</a>
+        </div>
       </div>
     </div>
   </header>'''
