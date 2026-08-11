@@ -6,5 +6,9 @@
 # Tooling / session data
 .claude/
 
+# Cloudflare / Node tooling
+.wrangler/
+node_modules/
+
 # Scratch
 *.log
