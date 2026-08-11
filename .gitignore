@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+*.swp
+*~
+
+# Tooling / session data
+.claude/
+
+# Scratch
+*.log
