@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate the FlexiSoft sub-pages (Solutions, Partners, Case Studies,
-Resources, About, Contact) into dist/, and unify the header/footer +
+Resources, About, Contact) at the repo root, and unify the header/footer +
 navigation across every page including the existing home page.
 
 Content is taken from the project's "Website Content" brief. Case-study and
@@ -13,7 +13,7 @@ only templates for those). Run from the project root:
 import os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DIST = os.path.join(HERE, "dist")
+DIST = HERE  # site files live at the repo root
 
 # ---------------------------------------------------------------- design tokens
 GREEN   = "#00BD8E"

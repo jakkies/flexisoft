@@ -5,13 +5,12 @@ Rebuild the static FlexiSoft site (dist/) from the source artifact bundle.
 The source "FlexiSoft Homepage.html" is a self-unpacking Claude artifact:
 a template + data + gzip-compressed resources (logo, Inter fonts) that a
 runtime assembles in the browser. This script does that assembly ahead of
-time and emits a plain, JS-free static site:
+time and emits a plain, JS-free static site at the repo root:
 
-    dist/
-      index.html            fully-rendered semantic markup
-      styles.css            reset + @font-face + hover rules
-      assets/flexisoft-logo.svg
-      assets/fonts/*.woff2   self-hosted Inter subsets
+    ./index.html              fully-rendered semantic markup
+    ./styles.css              reset + @font-face + hover rules
+    ./assets/flexisoft-logo.svg
+    ./assets/fonts/*.woff2     self-hosted Inter subsets
 
 What it does:
   1. Reads the bundle's template, render data, and resource manifest.
@@ -30,7 +29,7 @@ import json, re, base64, gzip, os, html
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "FlexiSoft Homepage.html")
-OUT = os.path.join(HERE, "dist")
+OUT = HERE  # site files live at the repo root
 
 # ---- locate the bundle's <script> payloads by type marker (robust to line moves) ----
 raw = open(SRC, encoding="utf-8").read()
