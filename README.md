@@ -49,19 +49,18 @@ directly is fine too — just note that re-running the scripts overwrites them.
 python3 -m http.server 8000    # then open http://localhost:8000
 ```
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare
 
-**Wrangler (direct upload)** — output directory is the repo root:
+The site is deployed as an **assets-only Cloudflare Worker** (config in
+`wrangler.toml`) and is live at **https://flexisoft.jakkies.workers.dev**.
+
+To (re)deploy:
 
 ```bash
-npx wrangler pages deploy . --project-name=flexisoft
+npx wrangler deploy
 ```
 
-**Git-connected build** — connect this repo in the Cloudflare dashboard with:
-
-- **Build command:** *(leave empty)*
-- **Build output directory:** `/`
-
 `.assetsignore` keeps the source, build scripts, and reference material in the
-repo but excludes them from the deployed site, so only the actual pages and
-their assets are published.
+repo but excludes them from the published site, so only the actual pages and
+their assets are served. Root-only ignore entries are anchored with a leading
+`/` so they don't accidentally match the site's own `assets/` files.
