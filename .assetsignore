@@ -1,0 +1,17 @@
+# Cloudflare Pages / Workers assets ignore — gitignore-style patterns.
+# These files stay in the repo but are NOT uploaded to the deployed site.
+# https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets
+
+# Build tooling & source
+build.py
+build_pages.py
+FlexiSoft Homepage.html
+
+# Design / reference material
+FlexiSoft Brand Board.pdf
+FlexiSoft-Logo.svg
+FlexiSoft-Screenshot-2026-05-11-at-13.58.33.jpg
+
+# Repo docs & config
+README.md
+.gitignore

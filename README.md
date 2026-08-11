@@ -61,3 +61,7 @@ npx wrangler pages deploy . --project-name=flexisoft
 
 - **Build command:** *(leave empty)*
 - **Build output directory:** `/`
+
+`.assetsignore` keeps the source, build scripts, and reference material in the
+repo but excludes them from the deployed site, so only the actual pages and
+their assets are published.
