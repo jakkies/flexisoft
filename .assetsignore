@@ -27,3 +27,6 @@
 .claude/
 .wrangler/
 node_modules/
+
+# Unrelated project living in this folder — never publish
+/ontbyt-rusks-costing/
