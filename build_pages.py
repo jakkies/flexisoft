@@ -472,27 +472,30 @@ PAGES = {
     "contact.html":      ("FlexiSoft — Contact", "Request a demo, more information, training, or support from the FlexiSoft team.", "Contact", contact_main),
 }
 
-for fname, (title, desc, active, builder) in PAGES.items():
-    html = page(title, desc, active, builder())
-    with open(os.path.join(DIST, fname), "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"wrote {fname:22s} {len(html):>7,d} bytes")
+def generate(dist=DIST):
+    """Write the standard subpages and patch the home page in `dist`."""
+    for fname, (title, desc, active, builder) in PAGES.items():
+        html = page(title, desc, active, builder())
+        with open(os.path.join(dist, fname), "w", encoding="utf-8") as f:
+            f.write(html)
+        print(f"wrote {fname:22s} {len(html):>7,d} bytes")
 
-# ============================================================ PATCH HOME PAGE
-idx_path = os.path.join(DIST, "index.html")
-idx = open(idx_path, encoding="utf-8").read()
-# swap header + footer for the shared, linked versions
-idx = re.sub(r'<header\b.*?</header>', lambda m: header(None), idx, count=1, flags=re.S)
-idx = re.sub(r'<footer\b.*?</footer>', lambda m: footer(), idx, count=1, flags=re.S)
-# route on-page demo/CTA buttons to the contact page
-idx = idx.replace('href="#cta"', 'href="contact.html"')
-# product "Learn More" links -> solutions deep-dive sections (first Neptus, second DCS)
-_lm = {"n": 0}
-def _lm_repl(m):
-    _lm["n"] += 1
-    return f'href="solutions.html#{"neptus" if _lm["n"] == 1 else "dcs"}"'
-idx = re.sub(r'href="#top"(?=[^>]*>Learn More)', _lm_repl, idx)
-with open(idx_path, "w", encoding="utf-8") as f:
-    f.write(idx)
-print("patched index.html (shared header/footer + links)")
-print("remaining #cta hrefs in index:", idx.count('href="#cta"'), "| Learn More rewrites:", _lm["n"])
+    idx_path = os.path.join(dist, "index.html")
+    idx = open(idx_path, encoding="utf-8").read()
+    # swap header + footer for the shared, linked versions
+    idx = re.sub(r'<header\b.*?</header>', lambda m: header(None), idx, count=1, flags=re.S)
+    idx = re.sub(r'<footer\b.*?</footer>', lambda m: footer(), idx, count=1, flags=re.S)
+    # route on-page demo/CTA buttons to the contact page
+    idx = idx.replace('href="#cta"', 'href="contact.html"')
+    # product "Learn More" links -> solutions deep-dive sections (first Neptus, second DCS)
+    lm = {"n": 0}
+    def lm_repl(m):
+        lm["n"] += 1
+        return f'href="solutions.html#{"neptus" if lm["n"] == 1 else "dcs"}"'
+    idx = re.sub(r'href="#top"(?=[^>]*>Learn More)', lm_repl, idx)
+    with open(idx_path, "w", encoding="utf-8") as f:
+        f.write(idx)
+    print("patched index.html (shared header/footer + links)")
+
+if __name__ == "__main__":
+    generate()
