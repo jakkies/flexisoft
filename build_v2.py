@@ -119,35 +119,35 @@ def partner_card(title, bullets=None, desc=None):
             f'<h3 style="margin:0; font-size:16px; font-weight:700; letter-spacing:-0.01em; color:{INK}">{title}</h3>'
             f'{body}</div>')
 
-def hero_with_image(eyebrow_text, title, subhead, img, alt, cta_html="", img_max=620):
+def hero_with_image(eyebrow_text, title, subhead, img, alt, cta_html="", img_max=713):
     cta = f'<div style="display:flex; flex-wrap:wrap; gap:12px; padding-top:8px">{cta_html}</div>' if cta_html else ''
-    left = (f'<div style="display:flex; flex-direction:column; gap:16px; max-width:520px">'
+    left = (f'<div style="flex:100 1 0; min-width:300px; max-width:480px; display:flex; flex-direction:column; gap:16px">'
             f'{bp.eyebrow(eyebrow_text)}'
             f'<h1 style="margin:0; font-size:clamp(30px, 4vw, 46px); line-height:1.1; font-weight:800; letter-spacing:-0.025em; color:{INK}; text-wrap:balance">{title}</h1>'
             f'<p style="margin:0; font-size:16px; line-height:26px; color:#4B5350; max-width:52ch; text-wrap:pretty">{subhead}</p>'
             f'{cta}</div>')
-    visual = (f'<div style="display:flex; justify-content:center">'
+    visual = (f'<div style="flex:135 1 0; min-width:320px; display:flex; justify-content:center">'
               f'<img src="{img}" alt="{alt}" style="width:100%; max-width:{img_max}px; height:auto; display:block"></div>')
     return (f'<section style="padding:40px 32px 0">'
-            f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(36px, 5vw, 72px)">'
-            f'<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">'
+            f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(27px, 3.75vw, 54px)">'
+            f'<div style="display:flex; flex-wrap:wrap; gap:36px; align-items:center">'
             f'{left}{visual}</div></div></section>')
 
 # =========================================================================
 # SOLUTIONS
 # =========================================================================
 def solutions_v2():
-    left = (f'<div style="display:flex; flex-direction:column; gap:16px; max-width:520px">'
+    left = (f'<div style="flex:100 1 0; min-width:300px; max-width:480px; display:flex; flex-direction:column; gap:16px">'
             f'{bp.eyebrow("Solutions")}'
             f'<h1 style="margin:0; font-size:clamp(30px, 4vw, 46px); line-height:1.1; font-weight:800; letter-spacing:-0.025em; color:{INK}; text-wrap:balance">Complete micro-lending platform solutions</h1>'
             f'<p style="margin:0; font-size:16px; line-height:26px; color:#4B5350; max-width:52ch; text-wrap:pretty">One powerful, secure platform to run your entire micro-lending operation — from loan origination to collections.</p>'
             f'<div style="display:flex; flex-wrap:wrap; gap:12px; padding-top:8px">{bp.btn_primary("Book a Demo", DEMO)}</div></div>')
-    visual = ('<div style="display:flex; justify-content:center">'
+    visual = ('<div style="flex:135 1 0; min-width:320px; display:flex; justify-content:center">'
               '<img src="assets/core-platfom.png" alt="FlexiSoft Core Platform — loan pipeline dashboard" '
-              'style="width:100%; max-width:620px; height:auto; display:block"></div>')
-    h = (f'<section style="padding:40px 32px 0">'
-         f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(36px, 5vw, 72px)">'
-         f'<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">'
+              'style="width:100%; max-width:713px; height:auto; display:block"></div>')
+    h = (f'<section style="padding:40px 32px 0; margin-bottom:50px">'
+         f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(27px, 3.75vw, 54px)">'
+         f'<div style="display:flex; flex-wrap:wrap; gap:36px; align-items:center">'
          f'{left}{visual}</div></div></section>')
 
     def group(num, title, cards):
@@ -195,7 +195,7 @@ def partners_v2():
                         "FlexiSoft is integrated with the following leading service providers in the South African micro-lending industry.",
                         "assets/FlexiSoft-Hero-Partners.png",
                         "FlexiSoft partner analytics — portfolio and scheduled reports",
-                        bp.btn_primary("Book a Demo", DEMO), img_max=640)
+                        bp.btn_primary("Book a Demo", DEMO), img_max=736)
 
     pay = bp.section(
         area_head("card", "Payment System Integration",
@@ -260,16 +260,16 @@ def partners_v2():
 # ABOUT
 # =========================================================================
 def about_v2():
-    left = (f'<div style="display:flex; flex-direction:column; gap:16px; max-width:520px">'
+    left = (f'<div style="flex:100 1 0; min-width:300px; max-width:480px; display:flex; flex-direction:column; gap:16px">'
             f'{bp.eyebrow("About")}'
             f'<h1 style="margin:0; font-size:clamp(30px, 4vw, 46px); line-height:1.1; font-weight:800; letter-spacing:-0.025em; color:{INK}; text-wrap:balance">About FlexiSoft</h1>'
             f'<p style="margin:0; font-size:16px; line-height:26px; color:#4B5350; max-width:52ch; text-wrap:pretty">Welcome to FlexiSoft, the leading micro-lending software platform in South Africa.</p></div>')
-    visual = ('<div style="display:flex; justify-content:center">'
+    visual = ('<div style="flex:135 1 0; min-width:320px; display:flex; justify-content:center">'
               '<img src="assets/FlexiSoft-Hero-About.png" alt="FlexiSoft field capture — offline-first data collection" '
-              'style="width:100%; max-width:460px; height:auto; display:block"></div>')
+              'style="width:100%; max-width:529px; height:auto; display:block"></div>')
     h = (f'<section style="padding:40px 32px 0">'
-         f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(36px, 5vw, 72px)">'
-         f'<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">'
+         f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(27px, 3.75vw, 54px)">'
+         f'<div style="display:flex; flex-wrap:wrap; gap:36px; align-items:center">'
          f'{left}{visual}</div></div></section>')
 
     intro = bp.section(
@@ -310,7 +310,7 @@ def contact_v2():
                         "Partner with us to create an environment that perfectly aligns with your business needs.",
                         "assets/FlexiSoft-Hero-Contact.png",
                         "FlexiSoft onboarding schedule and demo booking",
-                        img_max=640)
+                        img_max=736)
     IN = f'style="height:46px; padding:0 14px; border-radius:10px; border:1px solid #CFD5D3; background:#FFFFFF; font:inherit; font-size:14.5px; color:{INK}; width:100%"'
     def field(label, inp):
         return (f'<label style="display:flex; flex-direction:column; gap:7px">'
@@ -369,17 +369,17 @@ def build_home():
 
     # Hero: rebuild with the new headline, CTAs (Book a Demo + Email us) and the hero image
     hero_new = '''    <section data-screen-label="Hero" style="padding:40px 32px 0">
-      <div style="max-width:1200px; margin:0 auto; background:#F4F7F6; border-radius:24px; padding:clamp(36px, 5vw, 72px)">
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">
-          <div style="display:flex; flex-direction:column; gap:24px; max-width:520px">
+      <div style="max-width:1200px; margin:0 auto; background:#F4F7F6; border-radius:24px; padding:clamp(27px, 3.75vw, 54px)">
+        <div style="display:flex; flex-wrap:wrap; gap:36px; align-items:center">
+          <div style="flex:100 1 0; min-width:300px; max-width:480px; display:flex; flex-direction:column; gap:24px">
             <h1 style="margin:0; font-size:clamp(28px, 3.4vw, 42px); line-height:1.14; font-weight:800; letter-spacing:-0.03em; color:#111827; text-wrap:balance">Focus on your customers while our technology handles the complexity of your micro-lending business.</h1>
             <div style="display:flex; flex-wrap:wrap; gap:12px; padding-top:4px">
               <a href="contact.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 26px; border-radius:999px; background:#00BD8E; color:#052416; font-size:15px; font-weight:700; text-decoration:none" class="fx-h2">Book a Demo</a>
               <a href="__MAILTO__" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 26px; border-radius:999px; background:#FFFFFF; border:1px solid #CFD5D3; color:#111827; font-size:15px; font-weight:600; text-decoration:none" class="fx-h3">Email us</a>
             </div>
           </div>
-          <div style="display:flex; justify-content:center">
-            <img src="assets/FlexiSoft-Hero-Home.png" alt="FlexiSoft lending dashboard — approval rate and disbursements" style="width:100%; max-width:640px; height:auto; display:block">
+          <div style="flex:135 1 0; min-width:320px; display:flex; justify-content:center">
+            <img src="assets/FlexiSoft-Hero-Home.png" alt="FlexiSoft lending dashboard — approval rate and disbursements" style="width:100%; max-width:736px; height:auto; display:block">
           </div>
         </div>
       </div>
@@ -477,6 +477,11 @@ def build_home():
 # =========================================================================
 # BUILD
 # =========================================================================
+def strip_wrap(html):
+    """Body copy fills each line to the container edge and wraps only there:
+    drop the balanced / 'pretty' line-breaking (the readable max-width caps stay)."""
+    return html.replace('; text-wrap:pretty', '').replace('; text-wrap:balance', '')
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     # static assets
@@ -494,12 +499,13 @@ def main():
         "contact.html":   ("FlexiSoft — Contact", "Partner with FlexiSoft to build a lending environment that fits your business. Request a demo, info, training, or support.", "Contact", contact_v2),
     }
     for fname, (title, desc, active, builder) in pages.items():
-        html = bp.page(title, desc, active, builder())
+        html = strip_wrap(bp.page(title, desc, active, builder()))
         open(os.path.join(OUT, fname), "w", encoding="utf-8").write(html)
         print(f"wrote v2/{fname:16s} {len(html):>7,d} bytes")
 
     # home
     home, report = build_home()
+    home = strip_wrap(home)
     open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(home)
     print(f"wrote v2/index.html      {len(home):>7,d} bytes  (edits applied: {report['ok']}, warnings: {report['warn'] or 'none'})")
 
