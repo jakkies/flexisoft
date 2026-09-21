@@ -119,13 +119,36 @@ def partner_card(title, bullets=None, desc=None):
             f'<h3 style="margin:0; font-size:16px; font-weight:700; letter-spacing:-0.01em; color:{INK}">{title}</h3>'
             f'{body}</div>')
 
+def hero_with_image(eyebrow_text, title, subhead, img, alt, cta_html="", img_max=620):
+    cta = f'<div style="display:flex; flex-wrap:wrap; gap:12px; padding-top:8px">{cta_html}</div>' if cta_html else ''
+    left = (f'<div style="display:flex; flex-direction:column; gap:16px; max-width:520px">'
+            f'{bp.eyebrow(eyebrow_text)}'
+            f'<h1 style="margin:0; font-size:clamp(30px, 4vw, 46px); line-height:1.1; font-weight:800; letter-spacing:-0.025em; color:{INK}; text-wrap:balance">{title}</h1>'
+            f'<p style="margin:0; font-size:16px; line-height:26px; color:#4B5350; max-width:52ch; text-wrap:pretty">{subhead}</p>'
+            f'{cta}</div>')
+    visual = (f'<div style="display:flex; justify-content:center">'
+              f'<img src="{img}" alt="{alt}" style="width:100%; max-width:{img_max}px; height:auto; display:block"></div>')
+    return (f'<section style="padding:40px 32px 0">'
+            f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(36px, 5vw, 72px)">'
+            f'<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">'
+            f'{left}{visual}</div></div></section>')
+
 # =========================================================================
 # SOLUTIONS
 # =========================================================================
 def solutions_v2():
-    h = bp.hero("Solutions", "Complete micro-lending platform solutions",
-                "One powerful, secure platform to run your entire micro-lending operation — from loan origination to collections.",
-                bp.btn_primary("Book a Demo", DEMO))
+    left = (f'<div style="display:flex; flex-direction:column; gap:16px; max-width:520px">'
+            f'{bp.eyebrow("Solutions")}'
+            f'<h1 style="margin:0; font-size:clamp(30px, 4vw, 46px); line-height:1.1; font-weight:800; letter-spacing:-0.025em; color:{INK}; text-wrap:balance">Complete micro-lending platform solutions</h1>'
+            f'<p style="margin:0; font-size:16px; line-height:26px; color:#4B5350; max-width:52ch; text-wrap:pretty">One powerful, secure platform to run your entire micro-lending operation — from loan origination to collections.</p>'
+            f'<div style="display:flex; flex-wrap:wrap; gap:12px; padding-top:8px">{bp.btn_primary("Book a Demo", DEMO)}</div></div>')
+    visual = ('<div style="display:flex; justify-content:center">'
+              '<img src="assets/core-platfom.png" alt="FlexiSoft Core Platform — loan pipeline dashboard" '
+              'style="width:100%; max-width:620px; height:auto; display:block"></div>')
+    h = (f'<section style="padding:40px 32px 0">'
+         f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(36px, 5vw, 72px)">'
+         f'<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">'
+         f'{left}{visual}</div></div></section>')
 
     def group(num, title, cards):
         return (f'<div style="display:flex; flex-direction:column; gap:20px">'
@@ -168,9 +191,11 @@ def solutions_v2():
 # PARTNERS
 # =========================================================================
 def partners_v2():
-    h = bp.hero("Partners", "Integrated with the industry's leading providers",
-                "FlexiSoft is integrated with the following leading service providers in the South African micro-lending industry.",
-                bp.btn_primary("Book a Demo", DEMO))
+    h = hero_with_image("Partners", "Integrated with the industry's leading providers",
+                        "FlexiSoft is integrated with the following leading service providers in the South African micro-lending industry.",
+                        "assets/FlexiSoft-Hero-Partners.png",
+                        "FlexiSoft partner analytics — portfolio and scheduled reports",
+                        bp.btn_primary("Book a Demo", DEMO), img_max=640)
 
     pay = bp.section(
         area_head("card", "Payment System Integration",
@@ -235,8 +260,17 @@ def partners_v2():
 # ABOUT
 # =========================================================================
 def about_v2():
-    h = bp.hero("About", "About FlexiSoft",
-                "Welcome to FlexiSoft, the leading micro-lending software platform in South Africa.")
+    left = (f'<div style="display:flex; flex-direction:column; gap:16px; max-width:520px">'
+            f'{bp.eyebrow("About")}'
+            f'<h1 style="margin:0; font-size:clamp(30px, 4vw, 46px); line-height:1.1; font-weight:800; letter-spacing:-0.025em; color:{INK}; text-wrap:balance">About FlexiSoft</h1>'
+            f'<p style="margin:0; font-size:16px; line-height:26px; color:#4B5350; max-width:52ch; text-wrap:pretty">Welcome to FlexiSoft, the leading micro-lending software platform in South Africa.</p></div>')
+    visual = ('<div style="display:flex; justify-content:center">'
+              '<img src="assets/FlexiSoft-Hero-About.png" alt="FlexiSoft field capture — offline-first data collection" '
+              'style="width:100%; max-width:460px; height:auto; display:block"></div>')
+    h = (f'<section style="padding:40px 32px 0">'
+         f'<div style="max-width:1200px; margin:0 auto; background:{PANEL}; border-radius:24px; padding:clamp(36px, 5vw, 72px)">'
+         f'<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">'
+         f'{left}{visual}</div></div></section>')
 
     intro = bp.section(
         '<div style="max-width:760px; display:flex; flex-direction:column; gap:18px">'
@@ -272,8 +306,11 @@ def about_v2():
 # CONTACT
 # =========================================================================
 def contact_v2():
-    h = bp.hero("Contact", "Let's build the right solution for your business.",
-                "Partner with us to create an environment that perfectly aligns with your business needs.")
+    h = hero_with_image("Contact", "Let's build the right solution for your business.",
+                        "Partner with us to create an environment that perfectly aligns with your business needs.",
+                        "assets/FlexiSoft-Hero-Contact.png",
+                        "FlexiSoft onboarding schedule and demo booking",
+                        img_max=640)
     IN = f'style="height:46px; padding:0 14px; border-radius:10px; border:1px solid #CFD5D3; background:#FFFFFF; font:inherit; font-size:14.5px; color:{INK}; width:100%"'
     def field(label, inp):
         return (f'<label style="display:flex; flex-direction:column; gap:7px">'
@@ -330,16 +367,27 @@ def build_home():
     s = re.sub(r'(<meta name="description" content=")[^"]*(">)',
                r'\1Focus on your customers while our technology handles the complexity of your micro-lending business — the leading micro-lending platform in South Africa.\2', s, count=1)
 
-    # hero headline (longer, so ease the size down a touch) + remove sub-paragraph + secondary CTA
-    rep("font-size:clamp(34px, 4.4vw, 52px); line-height:1.08",
-        "font-size:clamp(28px, 3.4vw, 42px); line-height:1.14", "hero-h1-size")
-    rep("Micro-Lending Software Built Around Your Business",
-        "Focus on your customers while our technology handles the complexity of your micro-lending business.", "hero-h1")
-    rep('<p style="margin:0; font-size:16px; line-height:26px; color:#4B5350; max-width:44ch; text-wrap:pretty">A flexible, reliable, and scalable platform designed to streamline your lending operations from origination to collections.</p>',
-        '', "hero-sub-remove")
-    rep('<a href="contact.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 26px; border-radius:999px; background:#FFFFFF; border:1px solid #CFD5D3; color:#111827; font-size:15px; font-weight:600; text-decoration:none" class="fx-h3">Request a Call Back</a>',
-        f'<a href="{MAILTO}" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 26px; border-radius:999px; background:#FFFFFF; border:1px solid #CFD5D3; color:#111827; font-size:15px; font-weight:600; text-decoration:none" class="fx-h3">Email us</a>',
-        "hero-cta2")
+    # Hero: rebuild with the new headline, CTAs (Book a Demo + Email us) and the hero image
+    hero_new = '''    <section data-screen-label="Hero" style="padding:40px 32px 0">
+      <div style="max-width:1200px; margin:0 auto; background:#F4F7F6; border-radius:24px; padding:clamp(36px, 5vw, 72px)">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:48px; align-items:center">
+          <div style="display:flex; flex-direction:column; gap:24px; max-width:520px">
+            <h1 style="margin:0; font-size:clamp(28px, 3.4vw, 42px); line-height:1.14; font-weight:800; letter-spacing:-0.03em; color:#111827; text-wrap:balance">Focus on your customers while our technology handles the complexity of your micro-lending business.</h1>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; padding-top:4px">
+              <a href="contact.html" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 26px; border-radius:999px; background:#00BD8E; color:#052416; font-size:15px; font-weight:700; text-decoration:none" class="fx-h2">Book a Demo</a>
+              <a href="__MAILTO__" style="display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 26px; border-radius:999px; background:#FFFFFF; border:1px solid #CFD5D3; color:#111827; font-size:15px; font-weight:600; text-decoration:none" class="fx-h3">Email us</a>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:center">
+            <img src="assets/FlexiSoft-Hero-Home.png" alt="FlexiSoft lending dashboard — approval rate and disbursements" style="width:100%; max-width:640px; height:auto; display:block">
+          </div>
+        </div>
+      </div>
+    </section>'''.replace("__MAILTO__", MAILTO)
+    s2 = re.sub(r'    <section data-screen-label="Hero".*?</section>', lambda m: hero_new, s, count=1, flags=re.S)
+    if s2 != s: n["ok"] += 1
+    else: n["warn"].append("hero")
+    s = s2
 
     # trust bar
     rep("Trusted by forward-thinking institutions",
